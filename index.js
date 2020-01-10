@@ -1,1 +1,1 @@
-export * from './tag-manager/component'
+export * from './dropdown-table/component'

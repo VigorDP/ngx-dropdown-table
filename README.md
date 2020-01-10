@@ -1,49 +1,84 @@
-## ngx-tag-manager
+## ngx-dropdown-table
 
-Angular 中一种通用业务组件，标签管理器
+Angular 中一种通用业务组件，下拉 table 菜单，支持搜索、翻页
 
-使用场景：文章分类标签、公告类型标签等
+使用场景：后台管理系统中当需要切换当前某个主体时可以使用
 
-![ngx-tag-manager](./tag-manager.gif)
+![ngx-dropdown-table](./dropdown-table.gif)
 
 ### 基本使用
 
 ```
-npm i ngx-tag-manager
+npm i ngx-dropdown-table
 
 // 注册组件
-import { TagManagerComponent } from 'ngx-tag-manager';
+import { DropdownTableComponent } from 'ngx-dropdown-table';
 @NgModule({
   declarations: [
-    TagManagerComponent
+    DropdownTableComponent
   ],
   exports: [
-    TagManagerComponent
+    DropdownTableComponent
   ],
 })
 // 使用组件
 
-<button nz-button (click)="showTagManager=true" [nzType]="'primary'">
-  <i nz-icon nzType="copy" nzTheme="outline"></i>
-  <span>标签管理</span>
-</button>
+当前社区： <app-dropdown-table [config]="config"></app-dropdown-table>
 
-<app-tag-manager [show]="showTagManager" [listApi]="api.getTagList"
-  [saveApi]="api.saveTag" [deleteApi]="api.deleteTag" (close)="showTagManager=false"></app-tag-manager>
+config = {
+  api:...,
+  title:'社区列表',
+  placeholder:'请输入社区名称'
+}
+
 ```
 
 ### API
 
 - 输入属性
+  config: IConfig 配置对象
 
-  show:boolean，控制标签弹窗的显示
+```
+import { Observable } from 'rxjs';
+interface IBody {
+  pageSize: number;
+  pageNo: number;
+  [key: string]: any;
+}
+type IParams = IBody;
 
-  listApi: 标签列表接口
+export interface IRow {
+  id: number;
+  name: string;
+  [key: string]: any;
+}
 
-  saveApi: 新增或修改标签接口
+export interface IPageResult<T> {
+  total: number;
+  totalPage: number;
+  pageSize: number;
+  pageNo: number;
+  rows: Array<T>;
+}
 
-  deleteApi: 删除标签接口
+export interface IResult {
+  code: string;
+  data: IPageResult<IRow>;
+  [key: string]: any;
+}
 
-- 输出属性
+export interface IConfig {
+  api: (obj: IBody | IParams) => Observable<IResult>;
+  [key: string]: any;
+}
 
-  close 关闭标签弹窗事件
+
+```
+
+- 不论是父子组件还是非父子组件，都可订阅 settings.notify 事件获取每一行被点击的通知
+
+```
+this.settings.notify.subscribe(item=>console.log(item))
+```
+
+- 该组件还可响应外部组件要求更新列表的事件，任意地方调用 this.settings.setApp({event:'LIST-CHANGED'}) 即可触发 dropdown-table 组件更新列表
