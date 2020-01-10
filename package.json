@@ -1,6 +1,6 @@
 {
   "name": "ngx-dropdown-table",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "angular 下拉 Table 组件",
   "main": "index.js",
   "scripts": {
