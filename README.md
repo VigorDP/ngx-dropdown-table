@@ -27,6 +27,8 @@ import { DropdownTableComponent } from 'ngx-dropdown-table';
 
 config = {
   api:...,
+  renderTitle:row=>row.title
+  renderItem:row=>row.name
   title:'社区列表',
   placeholder:'请输入社区名称'
 }
