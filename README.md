@@ -12,14 +12,11 @@ Angular 中一种通用业务组件，下拉 table 菜单，支持搜索、翻�
 npm i ngx-dropdown-table
 
 // 注册组件
-import { DropdownTableComponent } from 'ngx-dropdown-table';
+import { NgxDropdownTableModule } from 'ngx-dropdown-table';
 @NgModule({
-  declarations: [
-    DropdownTableComponent
-  ],
-  exports: [
-    DropdownTableComponent
-  ],
+  imports: [
+    NgxDropdownTableModule
+  ]
 })
 // 使用组件
 

@@ -1,6 +1,6 @@
 {
   "name": "ngx-dropdown-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "angular 下拉 Table 组件",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,9 @@
   "author": "风之化身",
   "license": "MIT",
   "dependencies": {
+    "@angular/common": "8.2.14",
     "@angular/core": "^8.2.14",
+    "@angular/forms": "8.2.14",
     "@delon/abc": "^8.8.0",
     "@delon/theme": "^8.8.0",
     "ng-zorro-antd": "^8.5.2",

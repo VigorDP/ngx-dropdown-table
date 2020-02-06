@@ -1,1 +1,1 @@
-export * from './dropdown-table/component'
+export * from './dropdown-table/dropdown-table.module'
